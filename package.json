@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf dist",
+    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "postbuild": "cd dist && zip -r index.zip index.js*"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,8 @@
     "aws-sdk": "^2.1496.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.126"
+    "@types/aws-lambda": "^8.10.126",
+    "esbuild": "^0.19.5",
+    "typescript": "^5.2.2"
   }
 }
